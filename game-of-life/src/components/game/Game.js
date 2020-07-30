@@ -35,9 +35,9 @@ const pentadecathlonAdjacentCells = [
 
 function Game() {
   const [generation, setGeneration] = useState(0);
-  const [speed, setSpeed] = useState(100);
-  const [rows, setRows] = useState(37);
-  const [cols, setCols] = useState(37);
+  const [speed, setSpeed] = useState(1000);
+  const [rows, setRows] = useState(25);
+  const [cols, setCols] = useState(25);
   const [grid, setGrid] = useState(
     Array(rows)
       .fill()
@@ -240,6 +240,66 @@ function Game() {
     setGeneration(generation + 1);
   }
 
+  // Speed Methods
+
+  function decreaseSpeed() {
+    setSpeed(speed + 100);
+  }
+
+  function increaseSpeed() {
+    setSpeed(speed - 100);
+  }
+
+  // Size Methods
+
+  function decreaseSize() {
+    if (rows === 25) {
+      alert("This is the minimum grid size.");
+    } else if (rows === 37) {
+      setGeneration(0);
+      setRows(25);
+      setCols(25);
+      setGrid(
+        Array(25)
+          .fill()
+          .map(() => Array(25).fill(0))
+      );
+    } else {
+      setGeneration(0);
+      setRows(37);
+      setCols(37);
+      setGrid(
+        Array(37)
+          .fill()
+          .map(() => Array(37).fill(0))
+      );
+    }
+  }
+
+  function increaseSize() {
+    if (rows === 50) {
+      alert("This is the maximum grid size.");
+    } else if (rows === 37) {
+      setGeneration(0);
+      setRows(50);
+      setCols(50);
+      setGrid(
+        Array(50)
+          .fill()
+          .map(() => Array(50).fill(0))
+      );
+    } else {
+      setGeneration(0);
+      setRows(37);
+      setCols(37);
+      setGrid(
+        Array(37)
+          .fill()
+          .map(() => Array(37).fill(0))
+      );
+    }
+  }
+
   //JSX
 
   return (
@@ -253,6 +313,10 @@ function Game() {
             playPauseBtn={playPauseBtn}
             clear={clear}
             step={step}
+            decreaseSpeed={decreaseSpeed}
+            increaseSpeed={increaseSpeed}
+            decreaseSize={decreaseSize}
+            increaseSize={increaseSize}
           />
         </div>
         <BtnContainerRight

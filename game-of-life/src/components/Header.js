@@ -4,7 +4,7 @@ import "../App.css";
 function Header() {
   return (
     <div className="Header">
-      <h1>Handell's Game of Life</h1>
+      <h1>Game of Life</h1>
     </div>
   );
 }

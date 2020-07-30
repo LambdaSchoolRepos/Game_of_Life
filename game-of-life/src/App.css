@@ -75,11 +75,27 @@ button {
   color: ;
 }
 
-.bottom {
+.bottom_1 {
   margin: auto;
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
+}
+
+.bottom_2 {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left_side {
+  display: flex;
+  align-items: center;
+}
+
+.right_side {
+  display: flex;
+  align-items: center;
 }
 
 .presets {
