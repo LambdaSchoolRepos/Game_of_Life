@@ -292,6 +292,8 @@ function Game() {
         setCols(37);
         setSizeChange(true);
       }
+    } else {
+      alert("You cannot resize the grid while the game is playing.");
     }
   }
 
@@ -314,6 +316,8 @@ function Game() {
         setCols(37);
         setSizeChange(true);
       }
+    } else {
+      alert("You cannot resize the grid while the game is playing.");
     }
   }
 
