@@ -1,0 +1,113 @@
+html {
+  /*background: black; */
+}
+
+.App {
+  text-align: center;
+}
+
+.Header {
+  padding-bottom: 0%;
+  margin-bottom: 0%;
+}
+
+.Header h1 {
+  color: gold;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: lightblue;
+}
+
+.links {
+  width: 50%;
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: red;
+}
+
+.cell {
+  display: inline-block;
+  border: 1px solid black;
+  width: 18px;
+  height: 18px;
+  margin: -1px;
+  /* margin-left: -1px; */
+  /* margin-bottom: -1px; */
+}
+
+.cell:hover {
+  background: lightcoral;
+}
+
+.alive {
+  background-color: lightgreen;
+}
+
+.dead {
+  background-color: lightgoldenrodyellow;
+}
+
+.center {
+  margin: auto;
+  display: table;
+  margin-top: 10px;
+}
+
+.grid {
+  margin: auto;
+  line-height: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+button {
+  width: auto;
+  height: 30px;
+  text-align: center;
+  background: ;
+  color: ;
+}
+
+.bottom_1 {
+  margin: auto;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom_2 {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left_side {
+  display: flex;
+  align-items: center;
+}
+
+.right_side {
+  display: flex;
+  align-items: center;
+}
+
+.presets {
+  display: flex;
+  justify-content: center;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 15px;
+  margin-bottom: 100px;
+}
