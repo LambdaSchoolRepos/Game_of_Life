@@ -4,6 +4,8 @@ import BtnContainerBottom from "./BtnContainerBottom";
 import BtnContainerRight from "./BtnContainerRight";
 import "../../App.css";
 
+// Helper Arrays
+
 const adjacentCells = [
   //orthogonal neighbors
   [-1, 0], // left neighbor
@@ -33,7 +35,11 @@ const pentadecathlonAdjacentCells = [
   [0, 5], // five below
 ];
 
+// Functional Component
+
 function Game() {
+  // State
+
   const [generation, setGeneration] = useState(0);
   const [speed, setSpeed] = useState(1000);
   const [rows, setRows] = useState(25);
@@ -45,7 +51,11 @@ function Game() {
   );
   const [isRunning, setIsRunning] = useState(false);
   const [playPause, setPlayPause] = useState("Play");
-  const [intervalId, setIntervalId] = useState(useRef(null));
+  const [sizeChange, setSizeChange] = useState(false);
+  const [sizeIncrease, setSizeIncrease] = useState(true);
+  const [sizeText, setSizeText] = useState("Small");
+
+  //useEffect
 
   useEffect(() => {
     let interval = null;
@@ -61,6 +71,17 @@ function Game() {
       clearInterval(interval);
     };
   }, [isRunning, generation]);
+
+  useEffect(() => {
+    if (sizeChange) {
+      setGrid(
+        Array(rows)
+          .fill()
+          .map(() => Array(cols).fill(0))
+      );
+    }
+    setSizeChange(false);
+  }, [sizeChange]);
 
   //Bottom Buttons
 
@@ -253,50 +274,46 @@ function Game() {
   // Size Methods
 
   function decreaseSize() {
-    if (rows === 25) {
-      alert("This is the minimum grid size.");
-    } else if (rows === 37) {
-      setGeneration(0);
-      setRows(25);
-      setCols(25);
-      setGrid(
-        Array(25)
-          .fill()
-          .map(() => Array(25).fill(0))
-      );
-    } else {
-      setGeneration(0);
-      setRows(37);
-      setCols(37);
-      setGrid(
-        Array(37)
-          .fill()
-          .map(() => Array(37).fill(0))
-      );
+    if (!isRunning) {
+      if (rows === 25) {
+        alert("This is the minimum grid size.");
+      } else if (rows === 37) {
+        clear();
+        setSizeIncrease(false);
+        setSizeText("Small");
+        setRows(25);
+        setCols(25);
+        setSizeChange(true);
+      } else {
+        clear();
+        setSizeIncrease(false);
+        setSizeText("Medium");
+        setRows(37);
+        setCols(37);
+        setSizeChange(true);
+      }
     }
   }
 
   function increaseSize() {
-    if (rows === 50) {
-      alert("This is the maximum grid size.");
-    } else if (rows === 37) {
-      setGeneration(0);
-      setRows(50);
-      setCols(50);
-      setGrid(
-        Array(50)
-          .fill()
-          .map(() => Array(50).fill(0))
-      );
-    } else {
-      setGeneration(0);
-      setRows(37);
-      setCols(37);
-      setGrid(
-        Array(37)
-          .fill()
-          .map(() => Array(37).fill(0))
-      );
+    if (!isRunning) {
+      if (rows === 50) {
+        alert("This is the maximum grid size.");
+      } else if (rows === 37) {
+        clear();
+        setSizeIncrease(true);
+        setSizeText("Large");
+        setRows(50);
+        setCols(50);
+        setSizeChange(true);
+      } else {
+        clear();
+        setSizeIncrease(true);
+        setSizeText("Medium");
+        setRows(37);
+        setCols(37);
+        setSizeChange(true);
+      }
     }
   }
 
@@ -307,7 +324,31 @@ function Game() {
       <div className="presets">
         <div className="controls">
           <h2>Generation: {generation}</h2>
-          <Grid grid={grid} rows={rows} cols={cols} selected={selected} />
+          {sizeIncrease && grid[rows - 1] ? (
+            <Grid
+              grid={grid}
+              rows={rows}
+              cols={cols}
+              selected={selected}
+              width={rows * 18 + 1}
+            />
+          ) : !sizeIncrease && sizeText === "Small" && grid.length < 37 ? (
+            <Grid
+              grid={grid}
+              rows={rows}
+              cols={cols}
+              selected={selected}
+              width={rows * 18 + 1}
+            />
+          ) : !sizeIncrease && sizeText === "Medium" && grid.length < 50 ? (
+            <Grid
+              grid={grid}
+              rows={rows}
+              cols={cols}
+              selected={selected}
+              width={rows * 18 + 1}
+            />
+          ) : null}
           <BtnContainerBottom
             playPause={playPause}
             playPauseBtn={playPauseBtn}

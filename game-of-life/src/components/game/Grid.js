@@ -3,7 +3,6 @@ import Cell from "./Cell";
 import "../../App.css";
 
 function Grid(props) {
-  const width = props.cols * 18 + 1;
   let display = [];
   let cellState;
   for (let i = 0; i < props.rows; i++) {
@@ -22,7 +21,7 @@ function Grid(props) {
     }
   }
   return (
-    <div className="grid" style={{ width: width }}>
+    <div className="grid" style={{ width: props.width }}>
       {display}
     </div>
   );
